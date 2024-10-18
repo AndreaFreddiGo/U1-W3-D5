@@ -527,14 +527,60 @@ console.log(sumAllTheYears(movies))
   Scrivi una funzione chiamata "searchByTitle" che riceve una stringa come parametro e ritorna i film nell'array "movies" fornito che la contengono nel titolo.
 */
 
+// nella seguente funzione come parametri si inserisce il solito array di movies, ed una stringa da ricercare nel titolo; per farlo ho
+// deciso con un ciclo di verificare film per film il titolo, di splittarlo parola per parola e verificare la presenza della parola
+// ricercata (parametro stringa inserita al lancio della funzione) all'interno del titolo (con metodo indexOf ho sfruttato il fatto che
+// torna -1 se non è presente); se presente ho fatto in modo che venisse salvato in apposito array che ritorno alla fine e visualizzo
+// in console
+const searchByTitle = (array, string) => {
+  let selectedMoviesByTitle = []
+  for (let i = 0; i < array.length; i++) {
+    splittedTitle = array[i].Title.split(' ')
+    if (splittedTitle.indexOf(string) !== -1) {
+      selectedMoviesByTitle.push(array[i])
+    }
+  }
+  return selectedMoviesByTitle
+}
+console.log(searchByTitle(movies, 'Lord'))
+
 /* ESERCIZIO 18
   Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
   "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
 */
 
+const searchAndDivide = (array, string) => {
+  let result = {}
+  result.match = []
+  result.unmatch = []
+  for (let i = 0; i < array.length; i++) {
+    splittedTitle = array[i].Title.split(' ')
+    if (splittedTitle.indexOf(string) !== -1) {
+      result.match.push(array[i])
+    } else {
+      result.unmatch.push(array[i])
+    }
+  }
+  return result
+}
+console.log(searchAndDivide(movies, 'Lord'))
+
 /* ESERCIZIO 19
   Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
 */
+
+const removeIndex = (array, index) => {
+  const newArray = [...array]
+  if (index > array.length) {
+    return console.log(
+      "ATTENZIONE: non c'è un film in quella posizione perché i film sono solo 14!!"
+    )
+  } else {
+    newArray.splice(index - 1, 1)
+  }
+  return newArray
+}
+console.log(removeIndex(movies, 7))
 
 // DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
 
