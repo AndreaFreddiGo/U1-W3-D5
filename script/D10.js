@@ -7,6 +7,8 @@ REGOLE
 - Per farlo puoi utilizzare il terminale Bash, quello di VSCode o quello del tuo sistema operativo (se utilizzi macOS o Linux)
 */
 
+// ho dovuto spostare qui sopra la varibile const altrimenti prima, quando stava sotto agli esercizi, non veniva ovviamente riconosciuta
+// nelle funzioni in cui doveva essere richiamata
 const movies = [
   {
     Title: 'The Lord of the Rings: The Fellowship of the Ring',
@@ -715,19 +717,22 @@ halfTree(10)
 
 */
 
+// per ricreare l'albero non spezzato, ho eseguito una funzione nella quale ho creato una variabile per gli spazi, una variabile
+// per gli asterischi e la linea corrispondente agli "strati" dell'albero; con un ciclo for in cui i cresceva e y diminuiva, ho
+// di volta in volta creato una "treeLine" composta da un numero decrescente di spazi e crescente di asterischi; fondamentale
+// il metodo .repeat() che permette di unire più volte consecutive la stessa stringa in una nuova stringa
 const tree = (n) => {
-  let treeLine = '*'
-  console.log(' ' + treeLine + ' ')
-  for (let i = 0; i < n; i++) {
-    treeLine = ' ' + '*' + treeLine + '*' + ' '
+  let space = ' '
+  let asterisk = '*'
+  let treeLine = ''
+  let y = n
+  for (let i = 1; i < n + 1; i++) {
+    treeLine = space.repeat(y - 1) + asterisk.repeat(i * 2 - 1)
     console.log(treeLine)
+    y = y - 1
   }
 }
-tree(12)
-
-let treeLine = '*'
-treeLine = ' ' + '*' + treeLine + '*' + ' '
-console.log(treeLine)
+tree(11)
 
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
