@@ -641,27 +641,28 @@ changeColor()
 */
 
 // con questa funzione cerco la lista non ordinata ul specifica con proprio id e le aggiungo un nuovo li
-const addNewLi = () => {
-  const selectedUl = document.getElementById('myList') // questo è il padre
-  const newLi = document.createElement('li') // creo il figlio, quindi un nuovo "li"
-  selectedUl.appendChild(newLi) // appena il figlio al padre cioè aggiungo un li a ul
-}
-addNewLi()
+// lascio tutto commentato perchè se no da errore appendChild non trovando i riferimenti
+// const addNewLi = () => {
+//   const selectedUl = document.getElementById('myList') // questo è il padre
+//   const newLi = document.createElement('li') // creo il figlio, quindi un nuovo "li"
+//   selectedUl.appendChild(newLi) // appena il figlio al padre cioè aggiungo un li a ul
+// }
+// addNewLi()
 
 /* ESERCIZIO 25
   Scrivi una funzione per svuotare la lista non ordinata con id "myList".
 */
 
 // con questa funzione vado a recupera l'ul (padre) e tutti i figli li, ed uno ad uno, con ciclo for, vado ad eliminarli con
-// removeChild
-const resetUl = () => {
-  const selectedUl = document.getElementById('myList') // padre
-  const selectedLi = document.querySelectorAll('#myList li') // figli
-  for (let i = 0; i < selectedLi.length; i++) {
-    selectedUl.removeChild(selectedLi[i])
-  }
-}
-resetUl()
+// removeChild; lascio tutto commentato perchè se no da errore il removeChild non trovando i riferimenti
+// const resetUl = () => {
+//   const selectedUl = document.getElementById('myList') // padre
+//   const selectedLi = document.querySelectorAll('#myList li') // figli
+//   for (let i = 0; i < selectedLi.length; i++) {
+//     selectedUl.removeChild(selectedLi[i])
+//   }
+// }
+// resetUl()
 
 /* ESERCIZIO 26
   Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
@@ -691,6 +692,17 @@ addStyle()
 
 */
 
+// in questa funzione ho fatto in modo che, in funzione del numero inserito come parametro, con ciclo for mi vada a creare uno "strato"
+// dell'albero formato da asterischi che aumentano strato dopo strato; il risultato è visibile in console
+const halfTree = (n) => {
+  let treeLine = ''
+  for (let i = 0; i < n; i++) {
+    treeLine = treeLine + '*'
+    console.log(treeLine)
+  }
+}
+halfTree(10)
+
 /* ESERCIZIO 28
   Crea una funzione chiamata "tree" che riceve un numero come parametro e costruisce un albero di "*" (asterischi) dell'altezza fornita.
 
@@ -703,8 +715,35 @@ addStyle()
 
 */
 
+const tree = (n) => {
+  let treeLine = '*'
+  console.log(' ' + treeLine + ' ')
+  for (let i = 0; i < n; i++) {
+    treeLine = ' ' + '*' + treeLine + '*' + ' '
+    console.log(treeLine)
+  }
+}
+tree(12)
+
+let treeLine = '*'
+treeLine = ' ' + '*' + treeLine + '*' + ' '
+console.log(treeLine)
+
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
 */
 
-/* Questo array viene usato per gli esercizi. Non modificarlo. */
+// per capire se un numero è primo ho semplicemente fatto in modo che con un ciclo si provasse a dividerlo per ogni numero inferiore
+// a se stesso (perchè ovviamente ogni numero è divisibile per se stesso), escluso ovviamente il numero 1; se per caso trova un
+// numero per cui è divisibile (e che quindi conferma la condizione n % i === 0) la funzione si ferma e torna "false", altrimenti
+// continua fino alla fine del ciclo e se si conclude torna "true" perché non ha trovato nessun numero per cui è divisibile e quindi
+// è un numero primo
+const isItPrime = (n) => {
+  for (let i = 2; i < n; i++) {
+    if (n % i === 0) {
+      return false
+    }
+  }
+  return true
+}
+console.log(isItPrime(17))
